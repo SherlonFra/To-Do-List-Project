@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("To Do List Project")]
+[assembly: AssemblyTitle("ToDoList")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hewlett-Packard")]
-[assembly: AssemblyProduct("To Do List Project")]
+[assembly: AssemblyProduct("ToDoList")]
 [assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("947ca7b2-e9d9-4cd2-8fac-2dfb83074c5e")]
+[assembly: Guid("a80c193b-58ee-4a78-bb28-d4e7842aa0f6")]
 
 // Version information for an assembly consists of the following four values:
 //
