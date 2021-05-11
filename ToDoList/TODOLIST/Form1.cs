@@ -15,6 +15,7 @@ namespace TODOLIST
     {
         public Form1()
         {
+            //SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
         }
 
@@ -28,6 +29,12 @@ namespace TODOLIST
             cmd.Parameters.AddWithValue("@Activity", txtAct.Text);
             cmd.Parameters.AddWithValue("@Date", txtDate.Text);
             cmd.ExecuteNonQuery();
+
+            SqlCommand cmd2 = new SqlCommand("SELECT * FROM [Table]", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd2);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
             con.Close();
 
             txtEnt.Text = "";
@@ -43,11 +50,17 @@ namespace TODOLIST
             SqlConnection con = new SqlConnection("Data Source= DESKTOP-NVG7K5K\\SQLEXPRESS;Initial Catalog=To Do List;Integrated Security=True;Pooling=False");
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("UPDATE [Table] SET [Entry Number]=@EntryNumber,Activity=@Activity,Date=@Date", con);
+            SqlCommand cmd = new SqlCommand("UPDATE [Table] SET Activity=@Activity,Date=@Date WHERE [Entry Number]=@EntryNumber", con);
             cmd.Parameters.AddWithValue("@EntryNumber", int.Parse(txtEnt.Text));
             cmd.Parameters.AddWithValue("@Activity", txtAct.Text);
             cmd.Parameters.AddWithValue("@Date", txtDate.Text);
             cmd.ExecuteNonQuery();
+
+            SqlCommand cmd2 = new SqlCommand("SELECT * FROM [Table]", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd2);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
             con.Close();
 
             txtEnt.Text = "";
@@ -68,6 +81,12 @@ namespace TODOLIST
             cmd.Parameters.AddWithValue("@Activity", txtAct.Text);
             cmd.Parameters.AddWithValue("@Date", txtDate.Text);
             cmd.ExecuteNonQuery();
+
+            SqlCommand cmd2 = new SqlCommand("SELECT * FROM [Table]", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd2);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
             con.Close();
 
             txtEnt.Text = "";
@@ -77,6 +96,32 @@ namespace TODOLIST
 
             MessageBox.Show("Deleted");
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection("Data Source= DESKTOP-NVG7K5K\\SQLEXPRESS;Initial Catalog=To Do List;Integrated Security=True;Pooling=False");
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [Table]", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection("Data Source= DESKTOP-NVG7K5K\\SQLEXPRESS;Initial Catalog=To Do List;Integrated Security=True;Pooling=False");
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [Table] WHERE [Entry Number]=@EntryNumber", con);
+            cmd.Parameters.AddWithValue("EntryNumber",int.Parse(txtEnt.Text));
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
         }
     }
 }
